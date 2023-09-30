@@ -23,7 +23,6 @@ if [[ "${CONFIRM}" =~ ^[Yy]$ ]]; then
 	cp -TRv user-interface ~/admin-scripts/user-interface
 	cp -TRv tutorials-notebooks ~/admin-scripts/tutorials-notebooks
 	unzip ~/admin-scripts/tutorials-notebooks/tutorials-notebooks.zip -d ~/admin-scripts/tutorials-notebooks
-	rm ~/admin-scripts/tutorials-notebooks/tutorials-notebooks.zip
 	cp -TRv jupyter-ext-pkg ~/admin-scripts/external-packages
 	chmod +rwx ~/admin-scripts/*.sh
 

@@ -44,6 +44,8 @@ if [[ "${CONFIRM}" =~ ^[Yy]$ ]]; then
 	cp ~/admin-scripts/allow_users.txt /etc/jupyter/allow_users.txt
 	cp ~/admin-scripts/mysql_password.txt /etc/jupyter/mysql_password.txt
 	cp ~/admin-scripts/config.py /etc/jupyter/config.py
+	cp ~/admin-scripts/ssl.cert /etc/jupyter/ssl.cert
+	cp ~/admin-scripts/ssl.key /etc/jupyter/ssl.key
 	
 	# Create cookie secret file and proxy authenticator
 	echo -e "Creating authenticator"
