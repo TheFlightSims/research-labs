@@ -91,6 +91,9 @@ c.JupyterHub.api_page_default_limit = 3
 c.JupyterHub.cookie_secret_file = '/etc/jupyter/jupyterhub_cookie_secret'
 c.JupyterHub.db_url = mysql_connect_string()
 c.JupyterHub.debug_db = True
+c.JupyterHub.port = 443
+c.JupyterHub.ssl_key = '/etc/jupyter/ssl.key'
+c.JupyterHub.ssl_cert = '/etc/jupyter/ssl.cert'
 c.JupyterHub.reset_db = False
 c.JupyterHub.init_spawners_timeout = 60
 c.JupyterHub.terminals_enabled = False
@@ -99,7 +102,6 @@ c.NotebookApp.terminals_enabled = False
 
 #----------------------------
 # Native Authentication behaviour
-
 c.NativeAuthenticator.check_common_password = True
 c.NativeAuthenticator.minimum_password_length = 5
 c.NativeAuthenticator.allowed_failed_logins = 10
