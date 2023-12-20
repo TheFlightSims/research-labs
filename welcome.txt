@@ -1,0 +1,31 @@
+Starting the installer...
+
+================================
+   Welcome to Research Labs
+  A Project by TheFlightSims
+================================
+
+Visit the project here: https://github.com/TheFlightSims/research-labs
+Report vulnerabilities here: https://github.com/TheFlightSims/research-labs/security
+
+This project cannot be done without the support of TheFlightSims
+and other contributors. To see who contributed to this project, check
+out there: https://github.com/TheFlightSims/research-labs/graphs/contributors
+
+The project is linked with GNU GPL 3.0 license
+
+
+Welcome to the installer, dear the user. Let me guide you real quick.
+
+We offer two installation options here: Container and Standard Server. 
+- Container installation is faster because it removes heavy service 
+controls and MySQL server, which means it requires less workload and 
+is ideal for lightweight deployment. However, it still requires the 
+same minimum packages as the Standard Server installation.
+- Standard Server option is perfect for those looking for a fully 
+functional SaaS. It includes MySQL server, systemd service control, 
+and more secure HTTPS support.
+
+For more details, see here: https://github.com/TheFlightSims/research-labs/wiki
+
+To continue, select the installation mode you want. Select only one. 
