@@ -186,18 +186,22 @@
    </div>
 </div>
 <div>
-  <footer class="px-32 border-solid border-0 border-t border-t-border-subtle flex md:items-center  py-[20px] theme-variant bg-ui-background global-footer" style="position: fixed; bottom: 0; width: 100%;">
-     <div class="flex flex-col flex-1 gap-16 md:flex-1 md:flex-row md:gap-40 md:items-center">
+  <footer class="px-32 border-solid border-0 border-t border-t-border-subtle flex md:items-center gap-40 py-[20px] theme-variant bg-ui-background global-footer">
+      <div class="flex flex-col flex-1 gap-16 md:flex-1 md:flex-row md:gap-40 md:items-center">
+        <img src="/static/images/theflightsims-logo.png" alt="Girl in a jacket" width="16" height="16">
         <ul class="flex flex-col gap-8 md:flex-row md:items-center md:gap-24 m-0 p-0">
-        <li class="flex">
-            <a target="_blank" href="https://github.com/TheFlightSims/research-labs" class="appearance-none border-0 bg-transparent text-label-01 text-text-helper hover:text-text-primary transition-colors cursor-pointer p-0 m-0 no-underline">View source on GitHub</a>
-        </li>
-        <li class="flex">
-            <a target="_blank" href="https://github.com/TheFlightSims/research-labs/issues" class="appearance-none border-0 bg-transparent text-label-01 text-text-helper hover:text-text-primary transition-colors cursor-pointer p-0 m-0 no-underline">Support</a>
-        </li>
+            <li class="flex"><a href="https://github.com/TheFlightSims/research-labs/discussions" class="appearance-none border-0 bg-transparent text-label-01 text-text-helper hover:text-text-primary transition-colors cursor-pointer p-0 m-0 no-underline" target="_blank">Discussions</a></li>
+            <li class="flex"><a href="https://github.com/TheFlightSims/research-labs/pulls" class="appearance-none border-0 bg-transparent text-label-01 text-text-helper hover:text-text-primary transition-colors cursor-pointer p-0 m-0 no-underline" target="_blank">View PRs</a></li>
         </ul>
-     </div>
-    </footer>
+      </div>
+      <div>
+        <div role="radiogroup" aria-required="false" dir="ltr" class="inline-flex rounded" aria-label="Theme" tabindex="0" style="outline:none">
+          <ul class="flex flex-col gap-8 md:flex-row md:items-center md:gap-24 m-0 p-0">
+            <li class="flex"><a href="https://github.com/TheFlightSims" class="appearance-none border-0 bg-transparent text-label-01 text-text-helper hover:text-text-primary transition-colors cursor-pointer p-0 m-0 no-underline" target="_blank">Follow @TheFlightSims on GitHub</a></li>
+          </ul>
+        </div>
+      </div>
+  </footer>
 </div>
 {% endblock login %}
 {% endblock main %}

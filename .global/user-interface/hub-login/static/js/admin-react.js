@@ -2715,7 +2715,9 @@
                         "aria-label": "user-search",
                         defaultValue: g,
                         onChange: I
-                    })), r.createElement(qt, {
+                    })), r.createElement(
+                        "br"
+                    ), r.createElement(qt, {
                         md: "auto",
                         style: {
                             float: "right",

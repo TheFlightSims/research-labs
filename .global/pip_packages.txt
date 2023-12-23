@@ -38,7 +38,6 @@ bcrypt==4.0.1
 beautifulsoup4==4.12.2
 beniget==0.4.1
 bleach==6.1.0
-blinker==1.6.2
 blosc2==2.0.0
 bokeh==3.2.0
 boltons==23.1.1
@@ -71,7 +70,6 @@ coverage==7.3.2
 cryptography==41.0.5
 cvxpy==1.1.23
 cycler==0.12.1
-cypari2==2.1.2
 cysignals==1.11.4
 Cython==3.0.5
 cytoolz==0.12.1
@@ -106,7 +104,6 @@ Flask==3.0.0
 flatbuffers==23.5.26
 flit_core==3.9.0
 fonttools==4.45.1
-fpylll==0.5.2.dev0
 fqdn==1.5.1
 frozendict==2.3.9
 frozenlist==1.4.0
@@ -316,7 +313,6 @@ plotly==5.12.0
 pluggy==1.0.0
 ply==3.11
 portalocker==2.8.2
-pplpy==0.8.7
 primecountpy==0.1.0
 progressbar==2.5
 prometheus-client==0.19.0
@@ -334,7 +330,7 @@ pycairo==1.25.1
 pycodestyle==2.10.0
 pycparser==2.21
 pyct==0.4.8
-pycurl==7.45.1
+pycurl==7.45.2
 pydantic==1.10.13
 pydot==1.4.2
 pydub==0.25.1
@@ -396,7 +392,6 @@ rfc3986-validator==0.1.1
 rich==13.4.2
 roman==3.3
 rpds-py==0.13.1
-rpy2==3.4.5
 ruamel.yaml==0.18.5
 ruamel.yaml.clib==0.2.8
 rustworkx==0.13.0

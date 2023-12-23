@@ -10836,9 +10836,6 @@ a.cds--side-nav__link[aria-current="page"]:before {
     .lg\:grid-cols-4 {
         grid-template-columns: repeat(4, minmax(0, 1fr));
     }
-    .lg\:grid-rows-none {
-        grid-template-rows: none;
-    }
     .lg\:grid-rows-\[1fr_auto_1fr\] {
         grid-template-rows: 1fr auto 1fr;
     }

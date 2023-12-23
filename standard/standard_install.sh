@@ -18,13 +18,13 @@ service mysql restart
 echo -e "MySQL password has been reset to the default\nMySQL default root password: administrator\n\n"
 
 echo -e "Copying MySQL Password"
-cp ./res/mysql_password.txt /etc/jupyter/mysql_password.txt
+cp ./standard/res/mysql_password.txt /etc/jupyter/mysql_password.txt
 
 echo -e "Create a service for Jupyter"
-cp ./res/rl.service /etc/init.d/researchlabs
+cp ./standard/res/rl.service /etc/init.d/researchlabs
 chmod +rwxrxrx /etc/init.d/researchlabs
 
 echo -e "Copying standard configurations"
-cp ./res/config.py /etc/jupyter/config.py
+cp ./standard/res/config.py /etc/jupyter/config.py
 
 chmod 700 /etc/jupyter

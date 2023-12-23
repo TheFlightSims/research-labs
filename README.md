@@ -17,13 +17,13 @@ Research Labs on Docker Container helps administrators deploy Research Labs fast
 For immediate use, try pulling, running, and exporting `8000` to your local port
 
 ```shell
-docker run -p 80:8000 theflightsims/researchlabs:latest
+docker run -p 443:443 theflightsims/researchlabs:latest
 ```
 
 To save for later, try pulling this image only
 
 ```shell
-docker pull theflightsims/researchlabs
+docker pull theflightsims/researchlabs:latest
 ```
 
 ### Without Docker container (Recommended)
@@ -38,7 +38,7 @@ For a better understanding of how Research Labs can handle user data, code handl
 >
 > DO NOT install it only non-admin users. You won't be able to install PyPI packages, MySQL database for storing user data, as well as administration modules.
 
-#### Cloning & Installing scripts
+#### Cloning & Installing Research Labs
 
 Research Labs uses scriptings for fast deployment and removes most unnecessary files and folders that are not related directly to the Research Labs server operation (e.g. `.wiki`, `wsl-config`, and markdown files).
 
@@ -52,24 +52,15 @@ Installing and Removing local git repo
 
 ```shell
 cd research-labs
-chmod +x ./install_admin_scripts.sh && ./install_admin_scripts.sh
-Y # Or press Y manually
-cd .. && rm -rf research-labs
+chmod +x ./master.sh
+sudo ./master.sh
 ```
 
-#### Installing Research Labs from scratch
-
-Navigating to `admin-scripts` folder and installing Research Labs from here
-
-```shell
-cd ~/admin-scripts
-sudo ./jupyter_setup_server.sh
-Y # Or press Y manually
-```
+In the welcome screen, type `2` to start the standard installation. The setup will automatically install and configure your server.
 
 While that, please don't touch on its process. The installation will be completed quickly.
 
-> Note: We recommend you connect to a 50Mbps or faster Internet connection, so your installation won't be corrupted by Internet speed.
+> Note: We recommend you connect to a 50 Mbps or faster Internet connection, so your installation won't be corrupted by Internet speed.
 
 #### Starting Research Labs
 
@@ -85,7 +76,7 @@ Check the status
 sudo service researchlabs status
 ```
 
-By default, Research Labs will start at port `8000` on your local machine.
+By default, Research Labs will start at port `443` (with pre-installed SSL) on your local machine.
 
 ## Contributing
 

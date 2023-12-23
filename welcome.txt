@@ -1,4 +1,8 @@
-Starting the installer...
+The installer is started successfully.
+Please, do not make any changes on the server from now on.
+
+Keeps it running, make sure your Internet is connected and running
+properly.
 
 ================================
    Welcome to Research Labs
@@ -14,10 +18,10 @@ out there: https://github.com/TheFlightSims/research-labs/graphs/contributors
 
 The project is linked with GNU GPL 3.0 license
 
+Welcome to the installer. Let me guide you real quick.
 
-Welcome to the installer, dear the user. Let me guide you real quick.
+We offer two installation options here: Container and Standard Server:
 
-We offer two installation options here: Container and Standard Server. 
 - Container installation is faster because it removes heavy service 
 controls and MySQL server, which means it requires less workload and 
 is ideal for lightweight deployment. However, it still requires the 
