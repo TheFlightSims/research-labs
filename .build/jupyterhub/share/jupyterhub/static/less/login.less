@@ -1,0 +1,50 @@
+#login-main {
+  display: table;
+  height: 80vh;
+
+  & #insecure-login-warning {
+    .bg-warning();
+    padding: 10px;
+  }
+
+  .service-login {
+    text-align: center;
+    display: table-cell;
+    vertical-align: middle;
+    margin: auto auto 20% auto;
+  }
+
+  form {
+    display: table-cell;
+    vertical-align: middle;
+    margin: auto auto 20% auto;
+    width: 350px;
+  }
+
+  .login_error {
+    color: orangered;
+    font-weight: bold;
+    text-align: center;
+  }
+
+  .auth-form-header {
+    padding: 10px 20px;
+    color: #fff;
+    background: @jupyter-orange;
+    border-radius: @border-radius-large @border-radius-large 0 0;
+    font-size: large;
+  }
+
+  .auth-form-header > h1 {
+    font-size: inherit;
+    font-weight: inherit;
+    margin: 0;
+  }
+
+  .auth-form-body {
+    padding: 20px;
+    border: thin silver solid;
+    border-top: none;
+    border-radius: 0 0 @border-radius-large @border-radius-large;
+  }
+}
