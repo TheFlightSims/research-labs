@@ -1,0 +1,7 @@
+codecov
+flake8
+pytest >= 3.7
+pytest-asyncio
+notebook>=6.4.1
+bcrypt
+onetimepass
