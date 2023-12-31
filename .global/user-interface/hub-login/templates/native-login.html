@@ -84,7 +84,7 @@
           <div>
             <h1 class="text-expressive-heading-03 text-text-01 whitespace-nowrap !mb-0">Sign in to Research Labs</h1>
             <br>
-            <p></p>
+            <br>
             <form action="{{login_url}}?next={{next}}" method="post" role="form">
 
               {% if login_error %}
@@ -96,7 +96,7 @@
               <input type="hidden" name="_xsrf" value="{{ xsrf }}"/>
               <label for="username_input">Username</label>
               <input id="username_input" type="text" name="username" val="{{username}}" autocapitalize="off" autocorrect="off" class="form-control" autofocus="autofocus" required />
-              <p></p>
+              <br>
               <label for='password_input'>Password</label>
               <div class="input-group">
                   <input id="password_input" type="password" name="password" val="" autocapitalize="off" autocorrect="off" class="form-control" />
@@ -104,14 +104,14 @@
                       <button id="eye" type="button" style="border:0;">Show</button>
                   </span>
               </div>
-              <p></p>
+              <br>
               {% if two_factor_auth %}
               <label for="2fa_input">Enter 2FA Code</label>
               <input id="2fa_input" type="text" autocapitalize="off" autocorrect="off" class="form-control" name="2fa" placeholder="If you don't have 2FA, leave empty" />
-              <p></p>
+              <br>
               {% endif %}
               <input type="submit" id="login_submit" class='my-24 !w-full !no-underline cds--btn cds--btn--primary' value='Sign In' />
-              <p></p>
+              <br>
             </form>
             <div>
               <div class="separator border-border-subtle border-solid border-0 border-t w-[3.5rem] mb-24"></div>

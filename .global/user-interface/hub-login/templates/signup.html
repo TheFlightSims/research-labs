@@ -98,7 +98,7 @@
           <div class="flex justify-center items-center theme-variant max-w-384">
             <div>
               <h1 class="text-expressive-heading-03 text-text-01 whitespace-nowrap !mb-0">Sign up to Research Labs</h1>
-              <p></p>
+              <br>
               <form action="{{post_url}}" method="post" role="form">
 
                 {% if alert %}
@@ -117,39 +117,39 @@
                 {% endif %}
 
                 <input type="hidden" name="_xsrf" value="{{ xsrf }}"/>
-                <label for="username_input">Username:</label>
+                <label for="username_input">Username</label>
                 <input id="username_input" type="text" name="username" val="{{username}}" autocapitalize="off" autocorrect="off" class="form-control" autofocus="autofocus" required />
-                <p></p>
+                <br>
 
                 {% if ask_email %}
-                <label for="email_input">Email:</label>
+                <label for="email_input">Your eligible email <a href="https://github.com/TheFlightSims/research-labs/issues/34" target="_blank">(See default approved email)</a></label>
                 <input id="email_input" type="email" name="email" val="{{email}}" class="form-control" required />
-                <p></p>
+                <br>
                 {% endif %}
 
-                <label for="password_input">Password:</label>
+                <label for="password_input">Password</label>
                 <div class="input-group">
                     <input id="password_input" type="password" name="signup_password" val="" autocapitalize="off" autocorrect="off" class="form-control" />
                     <span class="input-group-addon">
                         <button id="eye" type="button" style="border:0;">👁</button>
                     </span>
                 </div>
-                <p></p>
+                <br>
 
-                <label for="password_confirm">Confirm password:</label>
+                <label for="password_confirm">Confirm password</label>
                 <div class="input-group">
                     <input id="password_confirmation_input" type="password" name="signup_password_confirmation" val="" autocapitalize="off" autocorrect="off" class="form-control" />
                     <span class="input-group-addon">
                   </span>
                 </div>
-                <p></p>
+                <br>
 
                 {% if two_factor_auth %}
                 <br>
                 <input type="checkbox" id="2fa" name="2fa" value="2fa">
                     Setup two factor authentication
                 </input>
-                <p></p>
+                <br>
                 {% endif %}
 
                 {% if tos %}
@@ -157,17 +157,17 @@
                 <input type="checkbox" id="tos_check">
                     {{tos|safe}}
                 </input>
-                <p></p>
+                <br>
                 {% endif %}
     
                 {% if recaptcha_key %}
                 <br>
                 <div class="g-recaptcha" data-sitekey="{{ recaptcha_key }}"></div>
-                <p></p>
+                <br>
                 {% endif %}
 
                 <input type="submit" id="signup_submit" class='my-24 !w-full !no-underline cds--btn cds--btn--primary' value='Create User' {% if tos %}disabled{% endif %} />
-                <p></p>
+                <br>
 
               </form>
               <div>

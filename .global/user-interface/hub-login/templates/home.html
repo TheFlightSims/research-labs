@@ -5,7 +5,8 @@
 
 {% block main %}
 <link rel="stylesheet" href="{{ static_url("css/home.css") }}" type="text/css"/>
-<div class="min-h-app relative bg-ui-background" data-v-01dcd351="">
+<link rel="stylesheet" href="{{ static_url("css/tailwinds.css") }}" type="text/css"/>
+<div class="relative bg-ui-background" data-v-01dcd351="">
   <div class="bg p-16 pb-24 md:p-32 grid grid-cols-1 md:grid-cols-3 lg:grid-cols-4 gap-16 md:h-[186px] text-text-on-color" data-v-01dcd351="">
     <div class="name md:col-span-2 lg:col-span-3 flex flex-col justify-between sm:min-h-[100px]" data-v-01dcd351="">
       <div class="text-body-compact-01" data-v-01dcd351="">
@@ -47,10 +48,10 @@
     </div>
   </div>
   <div class="content p-16 pb-40 md:px-32" data-v-01dcd351="">
-    <section class="flex flex-col bg-ui-01 rounded overflow-hidden jobs min-h-[180px]" data-v-15d66aae="" data-v-01dcd351="">
+    <section class="pt-16 pb-8 flex flex-col" data-v-15d66aae="" data-v-01dcd351="">
       <div class="flex justify-between items-start p-16 pb-24" data-v-15d66aae="">
         <div class="flex items-center mr-48" data-v-15d66aae="">
-          <h2 class="text-heading-compact-01 text-text-01 m-0" data-v-15d66aae="">Your Lab Management System</h2>
+          <h2 class="text-heading-compact-01 text-text-01 m-0" data-v-15d66aae="">All Research Labs resources</h2>
         </div>
       </div>
       <div class="p-16 pt-0 text-body-compact-01 text-text-secondary" data-v-15d66aae="">
@@ -66,11 +67,66 @@
         </a>
       </div>
     </section>
+    <section class=" pt-16 pb-8 flex flex-col" data-v-15d66aae="" data-v-01dcd351="">
+      <div class="flex justify-between items-start p-16 pb-24" data-v-15d66aae="">
+         <div class="flex items-center mr-48" data-v-15d66aae="">
+         </div>
+      </div>
+      <div>
+        <li><a href="{{ url }}">
+          View my Lab
+          <svg width="32" height="32" viewBox="0 0 32 32" aria-label="Open in a new tab" class="duo--Icon duo--IconArrowUpRight w-16 h-16">
+            <path d="M26 22h-2l-.001-12.585L7.414 26 6 24.586 22.585 8H10V6h16v16z"></path>
+          </svg>
+        </a></li>
+        <li><a href="{{base_url}}change-password">
+          Change Password
+          <svg width="32" height="32" viewBox="0 0 32 32" aria-label="Open in a new tab" class="duo--Icon duo--IconArrowUpRight w-16 h-16">
+            <path d="M26 22h-2l-.001-12.585L7.414 26 6 24.586 22.585 8H10V6h16v16z"></path>
+          </svg>
+        </a></li>
+        <li><a href="{{base_url}}token">
+          Token
+          <svg width="32" height="32" viewBox="0 0 32 32" aria-label="Open in a new tab" class="duo--Icon duo--IconArrowUpRight w-16 h-16">
+            <path d="M26 22h-2l-.001-12.585L7.414 26 6 24.586 22.585 8H10V6h16v16z"></path>
+          </svg>
+        </a></li>
+
+        {% if user.admin %}
+        <li><a href="{{base_url}}authorize">
+          Authorize Users
+          <svg width="32" height="32" viewBox="0 0 32 32" aria-label="Open in a new tab" class="duo--Icon duo--IconArrowUpRight w-16 h-16">
+            <path d="M26 22h-2l-.001-12.585L7.414 26 6 24.586 22.585 8H10V6h16v16z"></path>
+          </svg>
+        </a></li>
+        {% endif %}
+
+        {% if 'admin-ui' in parsed_scopes %}
+        <li><a href="{{base_url}}admin">
+          Admin Panel
+          <svg width="32" height="32" viewBox="0 0 32 32" aria-label="Open in a new tab" class="duo--Icon duo--IconArrowUpRight w-16 h-16">
+            <path d="M26 22h-2l-.001-12.585L7.414 26 6 24.586 22.585 8H10V6h16v16z"></path>
+          </svg>
+        </a></li>
+        {% endif %}
+      </div>
+   </section>
+   <section class="bg-layer pt-16 pb-8 flex flex-col" data-v-15d66aae="" data-v-01dcd351="">
+    <div class="flex justify-between items-start p-16 pb-24" data-v-15d66aae="">
+      <div class="flex items-center mr-48" data-v-15d66aae="">
+        <h2 class="text-heading-compact-01 text-text-01 m-0" data-v-15d66aae="">Sign out from Research Labs</h2>
+      </div>
+    </div>
+    <div class="p-16 pt-0 text-body-compact-01 text-text-secondary" data-v-15d66aae="">
+      <div class="mb-32 max-w-[320px]" data-v-15d66aae="">Please save all of your work before proceed!</div>
+      <a role="button" class="btn btn-lg btn-danger" href="{{logout_url}}">Sign out</a>
+    </div>  
+  </section>
     <div class="cards self-start flex flex-col lg:flex-row gap-16 md:gap-24 lg:gap-16" data-v-01dcd351="">
       <section class="dashboard-backends flex-1 min-h-[150px] lg:min-h-[300px] md:max-h-[320px]" data-v-4541156c="" data-v-01dcd351="">
         <div class="systems backend-card bg-active-01 hover:bg-purple-40 dark:hover:bg-purple-60" data-v-4541156c="">
           <h2 class="text-heading-compact-01 flex items-center justify-between mt-0 mb-32" data-v-4541156c="">
-            <a href="/hub/token" class="after:absolute after:inset-0" data-v-4541156c="">Your public API tokens</a>
+            <a href="{{base_url}}token" class="after:absolute after:inset-0" data-v-4541156c="">Your public API tokens</a>
             <svg width="32" height="32" viewBox="0 0 32 32" class="duo--Icon duo--IconArrowRight w-[20px] h-[20px]" data-v-4541156c="">
               <path d="M17 6l-1.41 1.41L23.17 15H2v2h21.17l-7.58 7.59L17 26l10-10L17 6z"></path>
             </svg>
@@ -81,7 +137,7 @@
         </div>
         <div class="simulators backend-card bg-ui-03 hover:bg-purple-40 dark:hover:bg-purple-60" data-v-4541156c="">
           <h2 class="text-heading-compact-01 flex items-center justify-between mt-0 mb-32" data-v-4541156c="">
-            <a href="/hub/change-password" class="after:absolute after:inset-0" data-v-4541156c="">Password</a>
+            <a href="{{base_url}}change-password" class="after:absolute after:inset-0" data-v-4541156c="">Password</a>
             <svg width="32" height="32" viewBox="0 0 32 32" class="duo--Icon duo--IconArrowRight w-[20px] h-[20px]" data-v-4541156c="">
               <path d="M17 6l-1.41 1.41L23.17 15H2v2h21.17l-7.58 7.59L17 26l10-10L17 6z"></path>
             </svg>
@@ -93,7 +149,7 @@
         {% if 'admin-ui' in parsed_scopes %}
         <div class="simulators backend-card bg-ui-03 hover:bg-purple-40 dark:hover:bg-purple-60" data-v-4541156c="">
           <h2 class="text-heading-compact-01 flex items-center justify-between mt-0 mb-32" data-v-4541156c="">
-            <a href="/hub/admin" class="after:absolute after:inset-0" data-v-4541156c="">Admin Panel</a>
+            <a href="{{base_url}}admin" class="after:absolute after:inset-0" data-v-4541156c="">Admin Panel</a>
             <svg width="32" height="32" viewBox="0 0 32 32" class="duo--Icon duo--IconArrowRight w-[20px] h-[20px]" data-v-4541156c="">
               <path d="M17 6l-1.41 1.41L23.17 15H2v2h21.17l-7.58 7.59L17 26l10-10L17 6z"></path>
             </svg>
@@ -103,17 +159,14 @@
           </div>
         </div>
         {% else %}
-          <div role="presentation" class="system-two backend-card bg-ui-03" data-v-4541156c=""></div>
+          <div class="" data-v-4541156c="">
+            <img src="/static/images/hone-replacement.png" />
+          </div>
         {% endif %}
       </section>
       <section class="card bg-layer pt-16 pb-8 flex flex-col gap-24 rounded flex-1 min-h-[300px] max-h-[320px]" data-v-4aad0b0b="" data-v-01dcd351="">
         <div class="flex justify-between px-16 pb-0">
           <h2 class="text-heading-compact-01 text-text-primary m-0">Lab Notification</h2>
-          <a href="{{ url }}" class="text-link-01 hover:text-link-primary-hover transition-colors text-body-compact-01 hover:underline flex items-center gap-4"> Open Lab 
-            <svg width="32" height="32" viewBox="0 0 32 32" aria-label="Open in a new tab" class="duo--Icon duo--IconArrowUpRight w-16 h-16">
-              <path d="M26 22h-2l-.001-12.585L7.414 26 6 24.586 22.585 8H10V6h16v16z"></path>
-            </svg>
-          </a>
         </div>
         <div class="content flex-1 overflow-x-auto">
           <div class="card-items" data-v-6e072ef5="" data-v-4aad0b0b="">
@@ -243,10 +296,19 @@
     </section>
   </div>
 </div>
-<div>
-  <footer class="px-32 border-solid border-0 border-t border-t-border-subtle flex md:items-center gap-40 py-[20px] theme-variant bg-ui-background global-footer">
+<!--Footer-->
+<style>
+.footer-for-non-login {
+  position: fixed;
+  left: 0;
+  bottom: 0;
+  width: 100%;
+  text-align: center;
+}
+</style>
+<div class="footer-for-non-login px-32 border-solid border-0 border-t border-t-border-subtle flex md:items-center gap-40 py-[20px] theme-variant bg-ui-background global-footer">
       <div class="flex flex-col flex-1 gap-16 md:flex-1 md:flex-row md:gap-40 md:items-center">
-        <img src="/static/images/theflightsims-logo.png" alt="Girl in a jacket" width="16" height="16">
+        <img src="/static/images/theflightsims-logo.png" width="16" height="16">
         <ul class="flex flex-col gap-8 md:flex-row md:items-center md:gap-24 m-0 p-0">
             <li class="flex"><a href="https://github.com/TheFlightSims/research-labs/discussions" class="appearance-none border-0 bg-transparent text-label-01 text-text-helper hover:text-text-primary transition-colors cursor-pointer p-0 m-0 no-underline" target="_blank">Discussions</a></li>
             <li class="flex"><a href="https://github.com/TheFlightSims/research-labs/pulls" class="appearance-none border-0 bg-transparent text-label-01 text-text-helper hover:text-text-primary transition-colors cursor-pointer p-0 m-0 no-underline" target="_blank">View PRs</a></li>
@@ -259,7 +321,6 @@
           </ul>
         </div>
       </div>
-  </footer>
 </div>
 {% endblock main %}
 {% block script %}
