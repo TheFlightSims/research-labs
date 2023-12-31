@@ -13,7 +13,7 @@ a:hover {
 }
 
 .bg-pattern {
-  background-image: url(/hub/static/images/error-bg.svg);
+  background-image: url(/hub/static/ibmq/hub/images/error-bg.svg);
   background-size: cover;
   width: 50%;
   position: absolute;
@@ -191,8 +191,4 @@ div.error {
 }
 .table>thead>tr>th {
   border-bottom: 0;
-}
-
-.pt-16 {
-  padding-top: 1rem;
 }
