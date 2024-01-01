@@ -17,7 +17,7 @@ Research Labs on Docker Container helps administrators deploy Research Labs fast
 For immediate use, try pulling, running, and exporting `8000` to your local port
 
 ```shell
-docker run -p 80:443 theflightsims/researchlabs:latest
+docker run -p 443:443 theflightsims/researchlabs:latest
 ```
 
 To save for later, try pulling this image only
