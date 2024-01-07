@@ -46,12 +46,8 @@ def pre_spawn_hook(spawner):
     except KeyError:
         subprocess.check_call(['useradd', '-ms', '/bin/bash', username])
         subprocess.check_call(['cp', '-TRv', '/etc/jupyter/tutorials-notebooks', '/home/' + username])
-        subprocess.check_call(['chmod', '777', '/home/' + username + '/*'])
-###
-
-### Default URL
-def default_url_fn(handle):
-    return '/hub/home'
+        os.system('chmod 707 /home/' + username + '/cpp-tutorials')
+        os.system('chmod 707 /home/' + username + '/qiskit-tutorials')
 ###
 
 ###############################
@@ -70,7 +66,7 @@ c.ConfigurableHTTPProxy.auth_token = '/etc/jupyter/proxy_auth_token'
 
 c.PAMAuthenticator.admin_groups = {'administrators'}
 
-c.JupyterHub.default_url = default_url_fn
+c.JupyterHub.default_url = '/hub/home'
 c.JupyterHub.authenticator_class = 'nativeauthenticator.NativeAuthenticator'
 c.JupyterHub.api_page_default_limit = 3
 c.JupyterHub.cookie_secret_file = '/etc/jupyter/jupyterhub_cookie_secret'
