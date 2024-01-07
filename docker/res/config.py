@@ -24,13 +24,8 @@ def pre_spawn_hook(spawner):
     except KeyError:
         subprocess.check_call(['useradd', '-ms', '/bin/bash', username])
         subprocess.check_call(['cp', '-TRv', '/etc/jupyter/tutorials-notebooks', '/home/' + username])
-        subprocess.check_call(['chmod', '777', '/home/' + username + '/qiskit-tutorials'])
-        subprocess.check_call(['chmod', '777', '/home' + username + '/r-tutorials'])
-###
-
-### Default URL
-def default_url_fn(handle):
-    return '/hub/home'
+        os.system('chmod 707 /home/' + username + '/cpp-tutorials')
+        os.system('chmod 707 /home/' + username + '/qiskit-tutorials')
 ###
 
 ###############################
@@ -51,12 +46,12 @@ c.PAMAuthenticator.admin_groups = {'administrators'}
 c.JupyterHub.authenticator_class = 'nativeauthenticator.NativeAuthenticator'
 c.JupyterHub.api_page_default_limit = 3
 c.JupyterHub.cookie_secret_file = '/etc/jupyter/jupyterhub_cookie_secret'
-c.JupyterHub.default_url = default_url_fn
+c.JupyterHub.default_url = '/hub/home'
 c.JupyterHub.db_url = 'sqlite:////etc//jupyter//jupyterhub.sqlite'
 c.JupyterHub.debug_db = True
-c.JupyterHub.port = 443
-c.JupyterHub.ssl_key = '/etc/jupyter/ssl.key'
-c.JupyterHub.ssl_cert = '/etc/jupyter/ssl.cert'
+c.JupyterHub.port = 80
+#c.JupyterHub.ssl_key = '/etc/jupyter/ssl.key'
+#c.JupyterHub.ssl_cert = '/etc/jupyter/ssl.cert'
 c.JupyterHub.reset_db = False
 c.JupyterHub.init_spawners_timeout = 60
 c.JupyterHub.terminals_enabled = False
