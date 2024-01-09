@@ -14,10 +14,10 @@ Provide and free-to-use web-based IDE for campus, team, and enterprise, with unl
 
 Research Labs on Docker Container helps administrators deploy Research Labs faster, more securely, and at no additional costs.
 
-For immediate use, try pulling, running, and exporting `8000` to your local port
+For immediate use, try pulling, running, and exporting `80` to your local port
 
 ```shell
-docker run -p 443:443 theflightsims/researchlabs:latest
+docker run -p 80:80 theflightsims/researchlabs:latest
 ```
 
 To save for later, try pulling this image only
@@ -108,4 +108,4 @@ This repo uses [GNU GPL-3.0](https://github.com/TheFlightSims/research-labs/blob
 
 ## Feedback
 
-To feedback this repository, go to [Issues](https://github.com/TheFlightSims/research-labs/blob/main/issues) or [join our Discord server]()
+To feedback this repository, go to [Issues](https://github.com/TheFlightSims/research-labs/blob/main/issues)
