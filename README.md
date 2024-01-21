@@ -1,5 +1,10 @@
 # Research Labs
 
+![Docker Tracker](https://img.shields.io/docker/pulls/theflightsims/researchlabs)
+![GitHub language count](https://img.shields.io/github/languages/count/TheFlightSims/research-labs)
+![GitHub repo size](https://img.shields.io/github/repo-size/TheFlightSims/research-labs)
+![GitHub Repo stars](https://img.shields.io/github/stars/TheFlightSims/research-labs)
+
 ```markdown
 This repository is a part of this project: Research Labs
 
