@@ -2,6 +2,7 @@ import os
 import pwd 
 import subprocess
 import random
+import string
 
 from OpenSSL import crypto
 ##################################################################################################
@@ -80,6 +81,12 @@ def admin_user():
     return admin_users
 ###
 
+### Authenticate secret
+def randomword(length):
+   letters = string.ascii_lowercase
+   return ''.join(random.choice(letters) for i in range(length))
+###
+
 ### Spawn mode
 def pre_spawn_hook(spawner):
     username = spawner.user.name
@@ -136,7 +143,7 @@ c.NativeAuthenticator.ask_email_on_signup = True
 #c.NativeAuthenticator.recaptcha_key = "your key"
 #c.NativeAuthenticator.recaptcha_secret = "your secret"
 c.NativeAuthenticator.allow_self_approval_for = '\b[A-Za-z0-9._%+-]+@(theflightsims\.tfs|theflightsims\.onmicrosoft\.com|google\.com|gmail\.com|outlook\.com|hotmail\.com|harvard\.edu)\b'
-c.NativeAuthenticator.secret_key = "MIICXQIBAAKBgQCk6IbNqZxLL411NubWLZEy5LELMV9+"
+c.NativeAuthenticator.secret_key = randomword(44)
 c.NativeAuthenticator.self_approval_email = ("research-labs-system@theflightsims.tfs", "[Research Labs System] Activate your account", "Welcome to Research Labs <3\n\nYour Research Labs is just created, but not activated\nYou may need to activate by enter this activation URL into your domain where you registered: {approval_url}\n\nPlease ignore this email in case you have not registered: some one is trying to steal your credential to get an unauthorized account!\n\nHave a nice day,\nResearch Labs Team - by TheFlightSims.")
 #c.NativeAuthenticator.self_approval_server = {'url': 'smtp.gmail.com', 'usr': 'myself', 'pwd': 'mypassword'}
 c.NativeAuthenticator.tos = 'I agree to <a href="https://github.com/TheFlightSims/research-labs/blob/main/LICENSE" target="_blank"><b>the Research Labs licensing terms (by TheFlightSims, and all related parties)</b></a>.'
