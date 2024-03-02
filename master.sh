@@ -11,7 +11,7 @@ echo -e -n "The installer is running within the path: $PWD\n\n"
 
 CONFIRM="n"
 cat ./welcome.txt
-echo -n "(1. Container Deployment/2. Standard Server): "
+echo -n "(1. Container Deployment/2. Standard Server with MySQL/3. Standard Server without MySQL): "
 read -n 1 CONFIRM_INPUT
 if [ -n "$CONFIRM_INPUT" ]; then
 	CONFIRM=$CONFIRM_INPUT
@@ -63,6 +63,12 @@ else
 		./standard/standard_install.sh
 		echo -e -n "[RLABS Standard Installation] The installation is finished!"
 	else
-		echo "Installation aborted!"
+		if [[ "${CONFIRM}" =~ ^[3]$ ]]; then
+			general_installation
+			./standard/standard_install_nomysql.sh
+			echo -e -n "[RLABS Standard Installation] The installation is finished!"
+		else
+			echo "Installation aborted!"
+		fi
 	fi
 fi
