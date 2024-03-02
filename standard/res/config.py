@@ -25,7 +25,7 @@ class MysqlSecure:
     def mysql_connect_string(self):
         sql_connect_string = 'mysql+pymysql'
         username = 'root'
-        pwd = self.mysql_get_password(self)
+        pwd = self.mysql_get_password()
         sql_server = 'localhost'
         dbname = 'jupyterdb'
         return sql_connect_string + '://' + username + ':' + pwd + '@' + sql_server + '/' + dbname
@@ -35,7 +35,8 @@ class MysqlSecure:
 ###
 
 ### OpenSSL Secure
-class OpensslSecure:
+class RSAKey:
+
     def generate_rsa_key(self):
         key = crypto.PKey()
         key.generate_key(crypto.TYPE_RSA, 4096)  # You can adjust the key size as needed
@@ -64,9 +65,8 @@ class OpensslSecure:
         return cert
 
     def __init__(self):
-        self.rsa_key = self.generate_rsa_key(self)
-        self.cert = self.generate_self_signed_cert(self, self.rsa_key)
-        self.opensslcert = [crypto.dump_privatekey(crypto.FILETYPE_PEM, self.rsa_key).decode(), crypto.dump_certificate(crypto.FILETYPE_PEM, self.cert).decode()]
+        self.rsa_key = self.generate_rsa_key()
+        self.cert = self.generate_self_signed_cert(self.rsa_key)
 ###
 
 ### Add administrators, root is not allowed
@@ -109,7 +109,7 @@ c.Authenticator.enable_auth_state = False
 c.Authenticator.auto_login_oauth2_authorize = False
 c.Authenticator.manage_groups = True
 
-c.Application.log_level = 'INFO'
+c.Application.log_level = 'DEBUG'
 
 c.ConfigurableHTTPProxy.auth_token = '/etc/jupyter/proxy_auth_token'
 
@@ -119,12 +119,11 @@ c.JupyterHub.default_url = '/hub/home'
 c.JupyterHub.authenticator_class = 'nativeauthenticator.NativeAuthenticator'
 c.JupyterHub.api_page_default_limit = 3
 c.JupyterHub.cookie_secret_file = '/etc/jupyter/jupyterhub_cookie_secret'
-c.JupyterHub.db_url = MysqlSecure.mysql_connect_string
+c.JupyterHub.db_url = MysqlSecure().mysql_connect_string
 c.JupyterHub.debug_db = True
 c.JupyterHub.port = 443
-sslkey = OpensslSecure.opensslcert
-c.JupyterHub.ssl_key = sslkey[0]
-c.JupyterHub.ssl_cert = sslkey[1]
+c.JupyterHub.ssl_key = crypto.dump_privatekey(crypto.FILETYPE_PEM, RSAKey().rsa_key).decode()
+c.JupyterHub.ssl_cert = crypto.dump_certificate(crypto.FILETYPE_PEM, RSAKey().cert).decode()
 c.JupyterHub.reset_db = False
 c.JupyterHub.init_spawners_timeout = 30
 c.JupyterHub.terminals_enabled = False
