@@ -29,6 +29,10 @@ same minimum packages as the Standard Server installation.
 - Standard Server option is perfect for those looking for a fully 
 functional SaaS. It includes MySQL server, systemd service control, 
 and more secure HTTPS support.
+- Standard Server (without MySQL Server) option is perfect for those 
+looking for a fully  functional SaaS. It includes MySQL server, 
+systemd service control, and more secure HTTPS support. However, you 
+need to provide `root` password in order to use Research Labs.
 
 For more details, see here: https://github.com/TheFlightSims/research-labs/wiki
 
