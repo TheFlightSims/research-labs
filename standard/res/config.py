@@ -1,28 +1,23 @@
 import os
 import pwd 
 import subprocess
-import pymysql
 import random
-import OpenSSL
-import base64
 
 from OpenSSL import crypto
-from datetime import datetime
-from datetime import timedelta
-
 ##################################################################################################
 # These functions are used to provide advanced settings for JupyterHub
 ###############################
 
 ### MySQL Secure
 class MysqlSecure:
+    
     def mysql_get_password(self):
         if os.access("/etc/jupyter/mysql_password.txt", os.R_OK) == True:
             file_path = open("/etc/jupyter/mysql_password.txt", "r").read()
             if file_path.find('\n') != -1:
                 return file_path[:-1]
             else:
-                return file_path
+                return file_path[:-1]
         else:
             return 'administrator'
 
