@@ -7,8 +7,6 @@ echo -e "Copy configurations to folder..."
 mkdir /etc/jupyter/
 cp ./.global/res/admins.txt /etc/jupyter/admins.txt
 cp ./.global/res/allow_users.txt /etc/jupyter/allow_users.txt
-cp ./.global/res/ssl.cert /etc/jupyter/ssl.cert
-cp ./.global/res/ssl.key /etc/jupyter/ssl.key
 
 # Create cookie secret file and proxy authenticator
 echo -e "Creating authenticator"
