@@ -31,7 +31,7 @@ class MysqlSecure:
         return sql_connect_string + '://' + username + ':' + pwd + '@' + sql_server + '/' + dbname
     
     def __init__(self):
-         self.sqlconnectionstring = self.mysql_connect_string()
+        self.sqlconnectionstring = self.mysql_connect_string()
 ###
 
 ### OpenSSL Secure
@@ -53,7 +53,7 @@ class RSAKey:
         
         # Set subject
         subject = cert.get_subject()
-        subject.CN = "*.theflightsims.tfs, *.com, *.harvard.edu"  # Common Name
+        subject.CN = "*.theflightsims.tfs"  # Adjusted CN
         subject.O = "TheFlightSims"  # Organization Name
         subject.OU = "Research Labs - Asia Pacific"  # Organizational Unit Name
         subject.L = "Miami"  # City
@@ -63,10 +63,24 @@ class RSAKey:
         # Sign the certificate with the private key
         cert.sign(private_key, 'sha512')
         return cert
+    
+    def WriteRSAKey(self):
+        keyfile = '/etc/jupyter/config.pem'  # Adjusted keyfile extension
+        rsakey = self.generate_rsa_key()
+        with open(keyfile, "wb") as file:  # Changed mode to write bytes
+            file.write(crypto.dump_privatekey(crypto.FILETYPE_PEM, rsakey))  # Corrected variable name
+        return keyfile, rsakey
+        
+    def WriteRSACertificate(self, sslkey):
+        cert = self.generate_self_signed_cert(sslkey)
+        certfile = '/etc/jupyter/ssl.cert'  # Adjusted certfile path
+        with open(certfile, "wb") as file:  # Changed mode to write bytes
+            file.write(crypto.dump_certificate(crypto.FILETYPE_PEM, cert))  # Corrected variable name
+        return certfile
 
-    def __init__(self):
-        self.rsa_key = self.generate_rsa_key()
-        self.cert = self.generate_self_signed_cert(self.rsa_key)
+    def __init__(self) -> None:
+        self.sslfile, self.sslkey = self.WriteRSAKey()
+        self.sslcert = self.WriteRSACertificate(self.sslkey)
 ###
 
 ### Add administrators, root is not allowed
@@ -122,8 +136,8 @@ c.JupyterHub.cookie_secret_file = '/etc/jupyter/jupyterhub_cookie_secret'
 c.JupyterHub.db_url = MysqlSecure().sqlconnectionstring
 c.JupyterHub.debug_db = True
 c.JupyterHub.port = 443
-c.JupyterHub.ssl_key = crypto.dump_privatekey(crypto.FILETYPE_PEM, RSAKey().rsa_key).decode()
-c.JupyterHub.ssl_cert = crypto.dump_certificate(crypto.FILETYPE_PEM, RSAKey().cert).decode()
+c.JupyterHub.ssl_key = RSAKey().sslfile
+c.JupyterHub.ssl_cert = RSAKey().sslcert
 c.JupyterHub.reset_db = False
 c.JupyterHub.init_spawners_timeout = 30
 c.JupyterHub.terminals_enabled = False
