@@ -13,17 +13,14 @@ from OpenSSL import crypto
 ### Port Checker
 class PortOpen:
     def check_ports(self, host = 'localhost', start_port = 800, end_port = 65510):
-        open_ports = []
         for port in range(start_port, end_port + 1):
             try:
                 with socket.socket(socket.AF_INET, socket.SOCK_STREAM) as s:
                     s.settimeout(0.1)  # Set a timeout for connection attempts
                     s.connect((host, port))
-                open_ports.append(port)
-                print(f"Port {port} is open")
+                return port
             except socket.error:
-                print(f"Port {port} is closed")
-        return open_ports
+                continue
     
     def __init__(self) -> None:
         self.opening_port = str(self.check_ports())
