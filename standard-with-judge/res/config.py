@@ -2,12 +2,32 @@ import os
 import pwd 
 import subprocess
 import random
+import socketserver, socket
 import string
 
 from OpenSSL import crypto
 ##################################################################################################
 # These functions are used to provide advanced settings for JupyterHub
 ###############################
+
+### Port Checker
+class PortOpen:
+    def check_ports(self, host = 'localhost', start_port = 800, end_port = 65510):
+        open_ports = []
+        for port in range(start_port, end_port + 1):
+            try:
+                with socket.socket(socket.AF_INET, socket.SOCK_STREAM) as s:
+                    s.settimeout(0.1)  # Set a timeout for connection attempts
+                    s.connect((host, port))
+                open_ports.append(port)
+                print(f"Port {port} is open")
+            except socket.error:
+                print(f"Port {port} is closed")
+        return open_ports
+    
+    def __init__(self) -> None:
+        self.opening_port = str(self.check_ports())
+###
 
 ### MySQL Secure
 class MysqlSecure:
@@ -89,7 +109,7 @@ class admin_user:
     def get_admin_user(self):
         admin_users = set()
         for f in open('/etc/jupyter/admins.txt', 'r'):
-            if f.find('#') != -1 or f == 'root' or f == 'test-service':
+            if f.find('#') != -1 or f == 'root' or f == 'grader-course':
                 continue
             if f.find('\n') != -1:
                 f = f[:-1]
@@ -98,6 +118,7 @@ class admin_user:
 
     def __init__(self) -> None:
         self.admin_list_tuple = self.get_admin_user()
+        self.admin_list_array = list(self.admin_list_tuple)
 ###
 
 ### Authenticate secret
@@ -110,9 +131,27 @@ def randomword(length):
 def pre_spawn_hook(spawner):
     username = spawner.user.name
     try:
+        '''
+        Enabling the instructor mode if username is under the admin account
+        Otherwise, it is student
+        '''
+        if username in admin_user().admin_list_tuple:
+            os.system('enable_assignment_list', username)
+            os.system('enable_course_list',  username)
+        else:
+            os.system('enable_assignment_list', username)
         pwd.getpwnam(username)
     except KeyError:
         subprocess.check_call(['useradd', '-ms', '/bin/bash', username])
+        '''
+        Enabling the instructor mode if username is under the admin account
+        Otherwise, it is student
+        '''
+        if username in admin_user().admin_list_tuple:
+            os.system('enable_assignment_list', username)
+            os.system('enable_course_list',  username)
+        else:
+            os.system('enable_assignment_list', username)
         subprocess.check_call(['cp', '-TRv', '/etc/jupyter/tutorials-notebooks', '/home/' + username])
         os.system('chmod 707 /home/' + username + '/cpp-tutorials')
         os.system('chmod 707 /home/' + username + '/qiskit-tutorials')
@@ -148,6 +187,27 @@ c.JupyterHub.ssl_cert = RSAKey().sslcert
 c.JupyterHub.reset_db = False
 c.JupyterHub.init_spawners_timeout = 30
 c.JupyterHub.terminals_enabled = False
+
+c.JupyterHub.load_groups = {
+    'formgrade-course': admin_user().admin_list_array
+}
+
+c.JupyterHub.services = [
+    {
+        'name': 'grader-course',
+        'url': 'https://127.0.0.1:' + PortOpen().opening_port,
+        'command': [
+            'jupyterhub-singleuser',
+            '--debug',
+        ],
+        'user': 'grader-course',
+        'environment': {
+            # specify lab as default landing page
+            'JUPYTERHUB_DEFAULT_URL': '/lab'
+        },
+        'cwd': '/home/grader-course',
+    }
+]
 
 c.NotebookApp.terminals_enabled = False
 
