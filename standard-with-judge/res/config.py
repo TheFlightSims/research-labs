@@ -85,6 +85,7 @@ class RSAKey:
 
 ### Add administrators, root is not allowed
 class admin_user:
+    
     def get_admin_user(self):
         admin_users = set()
         for f in open('/etc/jupyter/admins.txt', 'r'):
@@ -94,6 +95,7 @@ class admin_user:
                 f = f[:-1]
             admin_users.add(f)
         return admin_users
+
     def __init__(self) -> None:
         self.admin_list_tuple = self.get_admin_user()
 ###
