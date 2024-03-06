@@ -188,6 +188,35 @@ c.JupyterHub.reset_db = False
 c.JupyterHub.init_spawners_timeout = 30
 c.JupyterHub.terminals_enabled = False
 
+c.JupyterHub.load_roles = [
+    {
+        'name': 'formgrade-course',
+        'groups': ['formgrade-course'],
+        'scopes': [
+            'access:services!service=grader-course',
+            # access to the services API to discover the service(s)
+            'list:services',
+            f'read:services!service=grader-course',
+        ],
+    },
+    # The class_list extension needs permission to access services
+    {
+        'name': 'server',
+        'scopes': [
+            'inherit',
+            # in JupyterHub 2.4, this can be a list of permissions
+            # greater than the owner and the result will be the intersection;
+            # until then, 'inherit' is the only way to have variable permissions
+            # for the server token by user
+            # "access:services",
+            # "list:services",
+            # "read:services",
+            # "users:activity!user",
+            # "access:servers!user",
+        ],
+    },
+]
+
 c.JupyterHub.load_groups = {
     'formgrade-course': admin_user().admin_list_array
 }
