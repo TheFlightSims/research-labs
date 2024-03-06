@@ -84,15 +84,18 @@ class RSAKey:
 ###
 
 ### Add administrators, root is not allowed
-def admin_user():
-    admin_users = set()
-    for f in open('/etc/jupyter/admins.txt', 'r'):
-        if f.find('#') != -1 or f == 'root':
-            continue
-        if f.find('\n') != -1:
-            f = f[:-1]
-        admin_users.add(f)
-    return admin_users
+class admin_user:
+    def get_admin_user(self):
+        admin_users = set()
+        for f in open('/etc/jupyter/admins.txt', 'r'):
+            if f.find('#') != -1 or f == 'root' or f == 'test-service':
+                continue
+            if f.find('\n') != -1:
+                f = f[:-1]
+            admin_users.add(f)
+        return admin_users
+    def __init__(self) -> None:
+        self.admin_list_tuple = self.get_admin_user()
 ###
 
 ### Authenticate secret
@@ -117,13 +120,15 @@ def pre_spawn_hook(spawner):
 ##################################################################################################
 c = get_config()
 
-c.Authenticator.admin_users = admin_user()
+c.Authenticator.admin_users = admin_user().admin_list_tuple # Set the admins
 
 c.Authenticator.enable_auth_state = False
 c.Authenticator.auto_login_oauth2_authorize = False
 c.Authenticator.manage_groups = True
 
 c.Application.log_level = 'DEBUG'
+
+c.CourseDirectory.root = '/home/administrator/demo_testers'
 
 c.ConfigurableHTTPProxy.auth_token = '/etc/jupyter/proxy_auth_token'
 
