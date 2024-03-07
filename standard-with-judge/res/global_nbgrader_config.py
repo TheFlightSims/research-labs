@@ -1,2 +1,3 @@
 c = get_config()
-c.CourseDirectory.course_id = "course"
+c.Exchange.root = '/home/grader-course'
+c.CourseDirectory.course_id = 'course'
