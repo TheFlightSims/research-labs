@@ -137,6 +137,8 @@ def pre_spawn_hook(spawner):
             os.system('enable_course_list ' + username)
         else:
             os.system('enable_assignment_list ' + username)
+        spawner.log.info(f"Enabling RTC for user {spawner.user.name}")
+        spawner.args.append("--LabApp.collaborative=True")
         pwd.getpwnam(username)
     except KeyError:
         subprocess.check_call(['useradd', '-ms', '/bin/bash', username])
@@ -149,10 +151,19 @@ def pre_spawn_hook(spawner):
             os.system('enable_course_list ' + username)
         else:
             os.system('enable_assignment_list ' + username)
+        spawner.args.append("--LabApp.collaborative=True")
         subprocess.check_call(['cp', '-TRv', '/etc/jupyter/tutorials-notebooks', '/home/' + username])
         os.system('chmod 707 /home/' + username + '/cpp-tutorials')
         os.system('chmod 707 /home/' + username + '/qiskit-tutorials')
 ###
+
+class ApendingAssignmentRoles:
+    c = get_config()
+    
+    def 
+    
+    def __init__(self) -> None:
+        pass
 
 ###############################
 ##################################################################################################
@@ -204,7 +215,10 @@ c.JupyterHub.load_roles = [
 ]
 
 c.JupyterHub.load_groups = {
-    'formgrade-course': admin_user().admin_list_array
+    'formgrade-course': {
+        'users': admin_user().admin_list_array,
+        'properties': {'grader-user': 'true'},
+    },
 }
 
 c.JupyterHub.services = [
@@ -212,12 +226,11 @@ c.JupyterHub.services = [
         'name': 'grader-course',
         'url': 'http://127.0.0.1:' + PortOpen().opening_port,
         'command': [
-            'jupyterhub-singleuser',
+            'jupyterhub',
             '--debug',
         ],
         'user': 'grader-course',
         'environment': {
-            # specify lab as default landing page
             'JUPYTERHUB_DEFAULT_URL': '/lab'
         },
         'cwd': '/home/grader-course',
