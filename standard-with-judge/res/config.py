@@ -159,7 +159,6 @@ def pre_spawn_hook(spawner):
 c = get_config()
 
 c.Authenticator.admin_users = admin_user().admin_list_tuple # Set the admins
-
 c.Authenticator.enable_auth_state = False
 c.Authenticator.auto_login_oauth2_authorize = False
 c.Authenticator.manage_groups = True
@@ -221,7 +220,7 @@ c.JupyterHub.load_groups = {
 c.JupyterHub.services = [
     {
         'name': 'grader-course',
-        'url': 'https://127.0.0.1:' + PortOpen().opening_port,
+        'url': 'http://127.0.0.1:' + PortOpen().opening_port,
         'command': [
             'jupyterhub-singleuser',
             '--debug',
