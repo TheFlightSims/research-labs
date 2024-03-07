@@ -133,10 +133,10 @@ def pre_spawn_hook(spawner):
         Otherwise, it is student
         '''
         if username in admin_user().admin_list_tuple:
-            os.system('enable_assignment_list', username)
-            os.system('enable_course_list',  username)
+            os.system('enable_assignment_list ' + username)
+            os.system('enable_course_list ' + username)
         else:
-            os.system('enable_assignment_list', username)
+            os.system('enable_assignment_list ' + username)
         pwd.getpwnam(username)
     except KeyError:
         subprocess.check_call(['useradd', '-ms', '/bin/bash', username])
@@ -145,10 +145,10 @@ def pre_spawn_hook(spawner):
         Otherwise, it is student
         '''
         if username in admin_user().admin_list_tuple:
-            os.system('enable_assignment_list', username)
-            os.system('enable_course_list',  username)
+            os.system('enable_assignment_list ' + username)
+            os.system('enable_course_list ' + username)
         else:
-            os.system('enable_assignment_list', username)
+            os.system('enable_assignment_list ' + username)
         subprocess.check_call(['cp', '-TRv', '/etc/jupyter/tutorials-notebooks', '/home/' + username])
         os.system('chmod 707 /home/' + username + '/cpp-tutorials')
         os.system('chmod 707 /home/' + username + '/qiskit-tutorials')
@@ -168,6 +168,9 @@ c.Application.log_level = 'DEBUG'
 c.CourseDirectory.root = '/home/administrator/demo_testers'
 
 c.ConfigurableHTTPProxy.auth_token = '/etc/jupyter/proxy_auth_token'
+
+c.CourseDirectory.root = '/home/grader-course'
+c.CourseDirectory.course_id = "course"
 
 c.PAMAuthenticator.admin_groups = {'administrators'}
 
@@ -190,33 +193,21 @@ c.JupyterHub.load_roles = [
         'groups': ['formgrade-course'],
         'scopes': [
             'access:services!service=grader-course',
-            # access to the services API to discover the service(s)
             'list:services',
             f'read:services!service=grader-course',
+            'read:users'
         ],
-    },
-    # The class_list extension needs permission to access services
-    {
-        'name': 'server',
-        'scopes': [
-            'inherit',
-            # in JupyterHub 2.4, this can be a list of permissions
-            # greater than the owner and the result will be the intersection;
-            # until then, 'inherit' is the only way to have variable permissions
-            # for the server token by user
-            # "access:services",
-            # "list:services",
-            # "read:services",
-            # "users:activity!user",
-            # "access:servers!user",
-        ],
-    },
+        'users': admin_user().admin_list_array,
+        'services': ['grader-course'],
+        'groups': ['administrators']
+    }
 ]
 
+'''
 c.JupyterHub.load_groups = {
     'formgrade-course': admin_user().admin_list_array
 }
-
+'''
 c.JupyterHub.services = [
     {
         'name': 'grader-course',
