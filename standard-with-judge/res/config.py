@@ -203,11 +203,10 @@ c.JupyterHub.load_roles = [
     }
 ]
 
-'''
 c.JupyterHub.load_groups = {
     'formgrade-course': admin_user().admin_list_array
 }
-'''
+
 c.JupyterHub.services = [
     {
         'name': 'grader-course',
