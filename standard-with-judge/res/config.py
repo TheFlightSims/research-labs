@@ -157,14 +157,6 @@ def pre_spawn_hook(spawner):
         os.system('chmod 707 /home/' + username + '/qiskit-tutorials')
 ###
 
-class ApendingAssignmentRoles:
-    c = get_config()
-    
-    def 
-    
-    def __init__(self) -> None:
-        pass
-
 ###############################
 ##################################################################################################
 c = get_config()
