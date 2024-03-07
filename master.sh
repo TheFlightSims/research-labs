@@ -63,12 +63,6 @@ else
 		./standard/standard_install.sh
 		echo -e -n "[RLABS Standard Installation] The installation is finished!"
 	else
-		if [[ "${CONFIRM}" =~ ^[3]$ ]]; then
-			general_installation
-			./standard/standard_install_nomysql.sh
-			echo -e -n "[RLABS Standard Installation] The installation is finished!"
-		else
-			echo "Installation aborted!"
-		fi
+		echo "Installation aborted!"
 	fi
 fi
