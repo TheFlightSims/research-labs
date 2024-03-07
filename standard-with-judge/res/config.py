@@ -195,13 +195,13 @@ c.JupyterHub.load_roles = [
         'name': 'formgrade-course',
         'groups': ['formgrade-course'],
         'scopes': [
-            'access:services!service=grader-course',
+            'access:services!service=course',
             'list:services',
-            f'read:services!service=grader-course',
+            f'read:services!service=course',
             'read:users'
         ],
         'users': admin_user().admin_list_array,
-        'services': ['grader-course'],
+        'services': ['course'],
         'groups': ['administrators']
     }
 ]
@@ -215,10 +215,10 @@ c.JupyterHub.load_groups = {
 
 c.JupyterHub.services = [
     {
-        'name': 'grader-course',
+        'name': 'course',
         'url': 'http://127.0.0.1:' + PortOpen().opening_port,
         'command': [
-            'jupyterhub',
+            'jupyterhub-singleuser',
             '--debug',
         ],
         'user': 'grader-course',
