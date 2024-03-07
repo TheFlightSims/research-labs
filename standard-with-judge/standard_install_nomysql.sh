@@ -42,4 +42,7 @@ create_course grader-course course
 enable_create_assignment grader-course
 enable_formgrader grader-course
 
+# Write permission
+chmod ugo+rw /home/grader-course
+
 chmod 700 /etc/jupyter
