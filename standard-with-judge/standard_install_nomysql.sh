@@ -5,7 +5,8 @@ cp ./standard-with-judge/res/rl.service /etc/init.d/researchlabs
 chmod +rwxrxrx /etc/init.d/researchlabs
 
 # Install Notebook Grader
-pip install nbgrader
+pip install -r ./standard-with-judge/pip_packages.txt
+pip cache purge
 jupyter server extension enable nbgrader.server_extensions.formgrader
 jupyter server extension enable nbgrader.server_extensions.assignment_list
 jupyter server extension enable nbgrader.server_extensions.course_list
