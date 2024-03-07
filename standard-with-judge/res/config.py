@@ -168,12 +168,11 @@ c.Authenticator.auto_login_oauth2_authorize = False
 
 c.Application.log_level = 'DEBUG'
 
-c.CourseDirectory.root = '/home/administrator/demo_testers'
-
 c.ConfigurableHTTPProxy.auth_token = '/etc/jupyter/proxy_auth_token'
 
 c.CourseDirectory.root = '/home/grader-course'
-c.CourseDirectory.course_id = "course"
+c.Exchange.root = '/home/grader-course'
+c.CourseDirectory.course_id = 'course'
 
 c.PAMAuthenticator.admin_groups = {'administrators'}
 
