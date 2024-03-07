@@ -164,7 +164,7 @@ c = get_config()
 c.Authenticator.admin_users = admin_user().admin_list_tuple # Set the admins
 c.Authenticator.enable_auth_state = False
 c.Authenticator.auto_login_oauth2_authorize = False
-c.Authenticator.manage_groups = True
+#c.Authenticator.manage_groups = True
 
 c.Application.log_level = 'DEBUG'
 
