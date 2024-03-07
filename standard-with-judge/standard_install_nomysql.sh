@@ -16,6 +16,10 @@ jupyter labextension enable nbgrader:assignment-list
 jupyter labextension enable nbgrader:course-list
 jupyter labextension enable nbgrader:create-assignment
 jupyter labextension enable nbgrader:validate-assignment
+jupyter labextension enable application-extension:property-inspector
+jupyter labextension enable apputils-extension:splash
+jupyter labextension enable extensionmanager-extension
+jupyter labextension enable filebrowser-extension:share-file
 
 echo -e "Copying standard configurations"
 cp ./standard-with-judge/res/config.py /etc/jupyter/config.py
